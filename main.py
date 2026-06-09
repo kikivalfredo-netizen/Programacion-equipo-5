@@ -1,3 +1,5 @@
+lista_vendedores = []
+
 def mostrar_liquidacion(nombre_vendedor, cantidad_ventas, monto_total, sueldo_comision):
     return f"""
         Recibo de sueldo del vendedor {nombre_vendedor}
@@ -14,6 +16,16 @@ def calcular_comision(monto_total):
     if monto_total > 300000:
         sueldo_comision = monto_total * 0.15
     return sueldo_comision
+
+#HACER QUE FUNCIONE EN EL PROGRAMA (OWEN)
+def agregar_vendedor (Nombre, Ventas, Comisiones, Bonos):
+    vendedor = {
+        "Nombre": Nombre,
+        "Ventas": Ventas,
+        "Comisiones": Comisiones,
+        "Bonos": Bonos
+    }
+    lista_vendedores.append(vendedor)
 
 while True:
     try:
