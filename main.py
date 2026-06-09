@@ -42,9 +42,36 @@ while True:
                 print("|------------------|")
                 print("calcular comision")
                 print("|------------------|")
-                nombre_vendedor= input("Ingrese su nombre:")
-                cantidad_ventas= int(input("Ingrese la cantidad de ventas realizadas:"))
-                monto_total= float(input("Ingrese el monto total de las ventas:"))
+                # NOMBRE DEL VENDEDOR
+                while True:
+                    nombre_vendedor = input("Ingrese su nombre:")
+                    if nombre_vendedor.isalpha():
+                        break
+                    else:
+                        print("Error: Debes ingresar un nombre alfanumerico.")
+                # CANTIDAD DE VENTAS
+                while True:
+                    try:
+                        cantidad_ventas= int(input("Ingrese la cantidad de ventas realizadas:"))
+                        if cantidad_ventas > 0 and cantidad_ventas <= 10000:
+                            break
+                        else:
+                            print("Error: Debes ingresar un número entre 1 y 10000.")
+                    except ValueError:  
+                        print("Error: Debes ingresar un número entero.")
+                
+                # MONTO TOTAL DE LAS VENTAS
+                while True:
+                    try:
+                        monto_total = int(input("Ingrese el monto total de las ventas:"))
+                        if monto_total > 0:
+                            break
+                        else:
+                            print("Error: Debes ingresar un monto mayor a 1.")
+                    except ValueError:  
+                        print("Error: Debes ingresar un número entero.")
+                
+                # Llamar a funcion para calcular comision
                 sueldo_comision = calcular_comision(monto_total)
                 print(f"El vendedor {nombre_vendedor} ha realizado {cantidad_ventas} ventas por un sueldo total de ${sueldo_comision:.2f}.")
             case 2:
