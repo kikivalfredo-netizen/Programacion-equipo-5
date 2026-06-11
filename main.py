@@ -2,11 +2,11 @@ lista_vendedores = []
 
 def mostrar_liquidacion(nombre_vendedor, cantidad_ventas, monto_total, sueldo_comision):
     return f"""
-    Recibo de sueldo del vendedor {nombre_vendedor}
-    Cantidad de ventas realizadas: {cantidad_ventas}
-    Monto total de las ventas: ${monto_total:.2f}
-    Sueldo por comision: ${sueldo_comision:.2f}
-    """
+Recibo de sueldo del vendedor {nombre_vendedor}
+Cantidad de ventas realizadas: {cantidad_ventas}
+Monto total de las ventas: ${monto_total:.2f}
+Sueldo por comision: ${sueldo_comision:.2f}
+"""
 
 def calcular_comision(monto_total):
     if monto_total <= 100000:
@@ -32,8 +32,9 @@ while True:
         # Mostrar menu
         print("Selecciona la opcion que deseas realizar")
         print("1- Calcular comision")
-        print("2- Ver recibos de sueldo de vendedores (Admin)")
-        print("3- Salir")
+        print("2- Ver recibos de sueldo")
+        print("3- Informe de vendedores")
+        print("4- Salir")
         opc = int(input("Opcion: "))
  
         # Realizar accion del menu
@@ -76,20 +77,38 @@ while True:
  
                 # Llamar a funcion para calcular comision
                 sueldo_comision = calcular_comision(monto_total)
+                print("|---------------------------------------------------------------------------------|")
                 print(f"El vendedor {nombre_vendedor} ha realizado {cantidad_ventas} ventas por un sueldo total de ${sueldo_comision:.2f}.")
-
+                print("|---------------------------------------------------------------------------------|")
+                
                 agregar_vendedor(nombre_vendedor, cantidad_ventas, sueldo_comision, 0)
 
             case 2:
                 print("|------------------|")
-                print("Ver recibos")
+                print("Recibo de sueldo")
                 print("|------------------|")
- 
-                # Caso de prueba, mas adelante se automatizara
-                message = mostrar_liquidacion("Victorio", 10, 1000, 50)
-                print(message)
- 
+                while True:
+                    nombre = input("Ingrese su nombre: ")
+                    if nombre.isalpha():
+                        break
+                    else:
+                        print("Error: Debes ingresar un nombre en texto.")
+                
+                for vendedor in lista_vendedores:
+                    try:
+                        if nombre == vendedor["Nombre"]:
+                            print("|---------------------------------------------------|")
+                            print(mostrar_liquidacion(nombre, vendedor["Ventas"], vendedor["Comisiones"], vendedor["Bonos"]))
+                            print("|---------------------------------------------------|")
+                            break
+                    except KeyError:
+                        print("Error: No existe ese vendedor.")
+                        
             case 3:
+                pass
+                    
+ 
+            case 4:
                 print("|------------------|")
                 print("Saliendo...")
                 print("|------------------|")
@@ -97,27 +116,8 @@ while True:
                 break
  
             case _:
-                print("Error: Debes de ingresar una opcion valida (1,2 0 3).")
+                print("Error: Debes de ingresar una opcion valida.")
  
     except ValueError:
         print("Error: Debes ingresar un número entero.")
-                print(f"El vendedor {nombre_vendedor} ha realizado {cantidad_ventas} ventas por un sueldo total de ${sueldo_comision:.2f}.")
-            case 2:
-                print("|------------------|")
-                print("Ver recibos")
-                print("|------------------|")
-                #Caso de prueba, mas adelante se automatizara
-                message = mostrar_liquidacion("Victorio", 10, 1000, 50)
-                print(message)
-            case 3:
-                print("|------------------|")
-                print("Saliendo...")
-                print("|------------------|")
-                exit()
-                break
-            case _:
-                print ("Error: Debes de ingresar una opcion valida (1,2 0 3).")
-        
-    except ValueError:
-        print ("Error: Debes ingresar un número entero.")
 
