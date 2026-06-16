@@ -105,7 +105,15 @@ while True:
                         print("Error: No existe ese vendedor.")
                         
             case 3:
-                pass
+                print("|------------------|")
+                print("Informe de vendedores")
+                print("|------------------|")
+                for vendedor in lista_vendedores:
+                    print(f"Nombre: {vendedor['Nombre']}")
+                    print(f"Ventas: {vendedor['Ventas']}")
+                    print(f"Comisiones: ${vendedor['Comisiones']:.2f}")
+                    print(f"Bonos: ${vendedor['Bonos']:.2f}")
+                    print("")
                     
  
             case 4:
