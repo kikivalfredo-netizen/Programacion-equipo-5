@@ -81,7 +81,7 @@ while True:
                 print(f"El vendedor {nombre_vendedor} ha realizado {cantidad_ventas} ventas por un sueldo total de ${sueldo_comision:.2f}.")
                 print("|---------------------------------------------------------------------------------|")
                 
-                agregar_vendedor(nombre_vendedor, cantidad_ventas, sueldo_comision, 0)
+                agregar_vendedor(nombre_vendedor, cantidad_ventas, monto_total, sueldo_comision)
 
             case 2:
                 print("|------------------|")
@@ -97,9 +97,9 @@ while True:
                 for vendedor in lista_vendedores:
                     try:
                         if nombre == vendedor["Nombre"]:
-                            print("|---------------------------------------------------|")
+                            print("|-----------------------------------------------|")
                             print(mostrar_liquidacion(nombre, vendedor["Ventas"], vendedor["Comisiones"], vendedor["Bonos"]))
-                            print("|---------------------------------------------------|")
+                            print("|-----------------------------------------------|")
                             break
                     except KeyError:
                         print("Error: No existe ese vendedor.")
