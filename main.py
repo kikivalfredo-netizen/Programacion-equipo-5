@@ -16,6 +16,20 @@ def calcular_comision(monto_total):
     if monto_total > 300000:
         sueldo_comision = monto_total * 0.15
     return sueldo_comision
+
+# FUNCION YULI
+def calcular_bono(cantidad_ventas):
+    if cantidad_ventas >= 100 and cantidad_ventas <= 500:
+        bono = (cantidad_ventas - cantidad_ventas) + 50000
+    if cantidad_ventas >= 500 and cantidad_ventas <= 1000:
+        bono = (cantidad_ventas - cantidad_ventas) + 100000
+    if cantidad_ventas >= 1000 and cantidad_ventas <= 2500:
+        bono = (cantidad_ventas - cantidad_ventas) + 150000
+    if cantidad_ventas >= 2500 and cantidad_ventas <= 5000:
+        bono = (cantidad_ventas - cantidad_ventas) + 250000
+    if cantidad_ventas >= 5000 and cantidad_ventas <= 10000:
+        bono = (cantidad_ventas - cantidad_ventas) + 500000
+    return bono
  
 # HACER QUE FUNCIONE EN EL PROGRAMA (OWEN)
 def agregar_vendedor(Nombre, Ventas, Comisiones, Bonos):
@@ -34,16 +48,17 @@ while True:
         print("1- Calcular comision")
         print("2- Ver recibos de sueldo")
         print("3- Informe de vendedores")
-        print("4- Salir")
+        print("4- Calcular bono")
+        print("5- Salir")
         opc = int(input("Opcion: "))
  
         # Realizar accion del menu
         match opc:
  
             case 1:
-                print("|------------------|")
-                print("calcular comision")
-                print("|------------------|")
+                print("|---------------------|")
+                print("|--calcular comision--|")
+                print("|---------------------|")
  
                 # NOMBRE DEL VENDEDOR
                 while True:
@@ -84,9 +99,9 @@ while True:
                 agregar_vendedor(nombre_vendedor, cantidad_ventas, monto_total, sueldo_comision)
 
             case 2:
-                print("|------------------|")
-                print("Recibo de sueldo")
-                print("|------------------|")
+                print("|--------------------|")
+                print("|--Recibo de sueldo--|")
+                print("|--------------------|")
                 while True:
                     nombre = input("Ingrese su nombre: ")
                     if nombre.isalpha():
@@ -105,21 +120,41 @@ while True:
                         print("Error: No existe ese vendedor.")
                         
             case 3:
-                print("|------------------|")
-                print("Informe de vendedores")
-                print("|------------------|")
+                print("|--------------------------|")
+                print("|--Informe de vendedores---|")
+                print("|--------------------------|")
                 for vendedor in lista_vendedores:
                     print(f"Nombre: {vendedor['Nombre']}")
                     print(f"Ventas: {vendedor['Ventas']}")
                     print(f"Comisiones: ${vendedor['Comisiones']:.2f}")
                     print(f"Bonos: ${vendedor['Bonos']:.2f}")
                     print("")
+
+            case 4:
+                print("|-----------------|")
+                print("|--Calcular bono--|")
+                print("|-----------------|")
+
+                while True:
+                    try:
+                        cantidad_ventas = int(input("Ingrese la cantidad de ventas realizadas:"))
+                        if cantidad_ventas > 0 and cantidad_ventas <= 10000:
+                            break
+                        else:
+                            print("Error: Debes ingresar un número entre 1 y 10000.")
+                    except ValueError:
+                        print("Error: Debes ingresar un número entero.")
+                
+                bono = calcular_bono(cantidad_ventas)
+                print("|---------------------------------------------------------------------------------|")
+                print(f"El bono por la cantidad de ventas realizadas en el mes es de: ${bono:.2f}.")
+                print("|---------------------------------------------------------------------------------|")
                     
  
-            case 4:
-                print("|------------------|")
-                print("Saliendo...")
-                print("|------------------|")
+            case 5:
+                print("|-----------------|")
+                print("|---Saliendo...---|")
+                print("|-----------------|")
                 exit()
                 break
  
@@ -128,4 +163,3 @@ while True:
  
     except ValueError:
         print("Error: Debes ingresar un número entero.")
-
